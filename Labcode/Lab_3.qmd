@@ -1,0 +1,193 @@
+---
+title: "Lab 3"
+author: "Martin"
+date: 09/22/2023
+date-format: iso
+format: 
+  revealjs:
+    reference-location: document
+editor: visual
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(foreach)
+library(iterators)
+library(doParallel)
+cl <- makeCluster(6)
+registerDoParallel(cl)
+data(airquality)
+# use `cars` as an example
+cars_1 <- cars
+```
+
+
+## Content
+
+- Lab
+
+## Before we start
+
+- Question with coding: better attach error message or output (or both);
+- Emails about HW: at least 24 hours before deadline, **unable to response immediately on Friday**;
+- Questions?
+- Attendance: Scan the QR code.
+![Attendance](images/frame.png){.absolute bottom=0 right=70 width="300" height="300"}
+
+# Lab
+
+## Reading in the data
+
+::: incremental
+-   Use the right function to load data:
+    - `read.table()` / `read_table()`  pay attention to file's extensions, and specify delimiters and head rows;
+    - `read.csv()` / `read_csv()` for .csv files;
+    - `read_dta()` in package `haven` for Stata data files (check the dataset fist, some `.dta` files may require extra argument);
+    - `read_xls()` / `read_xlsx()` in package `readxl` for Excel files.
+:::
+
+## Loop operations
+
+
+::: incremental
+- `while` loop: seldom used, make R break down easily;
+- `for` loop
+  - `foreach` in foreach package
+:::  
+
+::: fragment
+```{r}
+#| echo: true
+# split d into 10 vectors and combine them by row
+d <- data.frame(x=1:10, y=rnorm(10))
+s <- foreach(b=iter(d, by='row'), .combine=rbind) %do% b
+identical(s, d)
+```
+:::
+
+
+## Conditional operations {.scrollable}
+
+### if statement
+::: incremental
+-   Three ways
+:::
+
+::: panel-tabset
+### Base R
+
+::: incremental
+- Cons: need to combine with `for` loop when dealing with dataset.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+cars_1$speed_rate <- rep(NA, nrow(cars_1))
+for (i in seq_len(nrow(cars_1))) {if (cars_1$speed[i] <= 10) {
+  cars_1$speed_rate[i] <- "slow"
+} else if (cars_1$speed[i] %in% 11:20) {
+  cars_1$speed_rate[i] <- "fast"
+} else {
+  cars_1$speed_rate[i] <- "superfast"
+}}
+table(cars_1$speed_rate)
+```
+:::
+
+### ifelse()
+
+::: fragment
+```{r}
+#| echo: true
+cars_1$speed_rate <- rep(NA, length(nrow(cars_1)))
+cars_1$speed_rate <- ifelse(cars_1$speed <= 10, 
+                            "slow", 
+                            ifelse(
+                              cars_1$speed %in% 11:20, 
+                              "fast", 
+                              "superfast"))
+table(cars_1$speed_rate)
+```
+:::
+
+### dplyr
+
+::: fragment
+```{r}
+#| echo: true
+cars_1 <- cars_1 %>% select(-speed_rate)
+cars_1 <- cars_1 %>% mutate(speed_rate = case_when(
+  speed <= 10 ~ "slow",
+  speed %in% (11:20) ~ "fast",
+  speed > 20 ~ "superfast"
+))
+table(cars_1$speed_rate)
+```
+:::
+:::
+
+
+```{r}
+#| echo: FALSE
+#| results: hide
+df <- read.csv(file = "data/LatinoEd.csv")
+```
+
+## Lab {.scrollable}
+
+::: incremental
+- A `list` can contain several values/vectors/data frames...
+  - `list[i]` access the $i^{th}$ element of the list, but still a list;
+  - `list[[i]]` the exact $i^{th}$ element.
+:::
+
+```{r}
+#| echo: TRUE
+#| results: hide
+list_1 <- list()
+list_1[[1]] <- head(cars, n = 6)
+list_1[[2]] <- rnorm(10)
+# classes
+class(list_1[[1]]) # data frame
+class(list_1[1]) # list
+```
+
+
+## Lab
+
+- Why we set default `max_x`, `max_y`, `min_x`, and `min_y` like below?
+  - To ensure the max/min value of the first x/y vector is recorded.
+
+```{r}
+#| echo: TRUE
+#| results: hide
+max_x <- -Inf
+  min_x <- Inf
+  max_y <- 0
+  min_y <- 0
+```
+
+## Legend
+
+::: incremental
+- Add arguments to make an elegant legend
+  - `x = "topright"`, `cex = 0.8`, etc.
+:::
+
+## hint for Project1
+
+- Expected sd of the means
+  - $\hat{\sigma_{\bar{x}}} = \sigma_{x}/\sqrt{n}$
+- Good luck!
+  - Lab Materials: 
+  
+
+
+
+
+
+
+
+

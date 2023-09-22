@@ -1,0 +1,369 @@
+---
+title: "Lab 2"
+author: "Martin"
+date: 09/14/2023
+date-format: iso
+format: 
+  revealjs:
+    reference-location: document
+editor: visual
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+data(airquality)
+getwd()
+```
+
+## Content
+
+-   Introduction to Rmd
+-   Lab
+-   Hints for Homework2
+
+## Introduction to Rmd
+
+- For those who haven't strated
+
+```{r}
+#| echo: true
+#| results: false
+
+# install rmarkdown package
+if(isFALSE("rmarkdown" %in% installed.packages())){
+  install.packages("rmarkdown")
+}
+
+# install tinytex
+if(isFALSE("tinytex" %in% installed.packages())){
+  install.packages("tinytex")
+}
+# tinytex::install_tinytex()
+```
+
+## Lab
+
+### Data Representation and Preparation
+
+::: incremental
+-   The first n rows of a data set
+    -   `head(df, n = x)` The first x rows of a data set
+    
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| output-location: fragment
+head(airquality, n = 5)
+
+```
+:::
+
+## Lab
+
+### Data Representation and Preparation
+
+-   The last n rows of a data set
+    -   `tail(df, n = x)` The last x rows of a data set
+
+::: fragment
+```{r}
+#| echo: true
+#| output-location: fragment
+tail(airquality, n = 5)
+
+```
+:::
+
+## Lab
+
+### Data Representation and Preparation
+
+::: incremental
+-   Let's check the first five rows of `latino` dataset!
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| output-location: fragment
+latino <- read.table(file = "data/LatinoEd.csv")
+head(latino, n = 5)
+
+```
+:::
+
+## Lab {.scrollable}
+
+### Data Representation and Preparation
+
+::: incremental
+-   What's wrong? TOT
+    -   By default, the `read.table` function assumes there is no header row in the file and that the values are separated by **white space**.
+    -   Check your dataset, then read it with corresponding functions or add appropriate arguments.
+    
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| results: hide
+latino <- read.csv(file = "data/LatinoEd.csv")
+latino <- read.table(file = "data/LatinoEd.csv", header = TRUE, sep = ",", row.names = "ID")
+```
+:::
+
+## Lab {.scrollable}
+
+### Data Representation and Preparation
+
+::: incremental
+
+- str() and summary()
+  - data structure and brief summary information
+
+:::
+
+::: {.panel-tabset}
+
+#### str()
+
+::: fragment
+
+```{r}
+#| echo: true
+str(latino)
+```
+
+:::
+
+#### summary()
+
+::: fragment
+```{r}
+#| echo: true
+summary(latino)
+```
+:::
+
+:::
+
+## Lab {.scrollable}
+
+### Data Representation and Preparation
+
+::: incremental
+
+- Anything unusual? 
+  - English: Is the individual fluent in English? (0 = No; 1 = Yes)
+  - Mex: Did the individual immigrate from Mexico? (0 = No; 1 = Yes)
+
+:::
+
+
+```{r}
+#| echo: true
+summary(latino)
+```
+
+
+
+## Lab
+
+### Data Representation and Preparation
+
+::: incremental
+
+- Factors
+
+:::
+
+::: fragment
+```{r}
+#| echo: true
+
+# create a factor variable
+factor_vec <- factor(c("Cat1", "Cat2", "Cat3"), levels = c("Cat1", "Cat2", "Cat3"))
+levels(factor_vec)
+# set the reference group
+factor_vec <- relevel(factor_vec, ref = "Cat2")
+levels(factor_vec)
+```
+:::
+
+## Lab {.scrollable}
+
+### Data Representation and Preparation
+
+::: panel-tabset
+#### Base R
+
+::: incremental
+-   box and whiskers plot
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| out-width: 70%
+boxplot(latino$Achieve)
+```
+:::
+
+#### ggplot2
+
+::: incremental
+-   box and whiskers plot
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| out-width: 70%
+ggplot(data = latino, aes(y = Achieve)) + 
+  geom_boxplot() + 
+  stat_boxplot(geom = "errorbar", width = 0.2)
+```
+:::
+:::
+
+:::
+
+## Lab {.scrollable}
+
+### Data Representation and Preparation
+
+::: panel-tabset
+#### Base R
+
+::: incremental
+-   density plot
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| out-width: 70%
+plot(density(latino$Achieve))
+```
+:::
+
+#### ggplot2
+
+::: incremental
+-   density plot
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| out-width: 70%
+ggplot(data = latino, aes(x = Achieve)) + 
+  geom_density() 
+```
+:::
+:::
+
+## Lab {.scrollable}
+
+### Data Representation and Preparation
+
+::: incremental
+
+- `subset()`
+
+:::
+
+::: fragment
+```{r}
+#| echo: true
+# create a subset of the data
+latino.sub <- subset(latino, subset = ImmAge >= 4 & ImmAge <= 7)
+# summary of the object
+summary(latino.sub)
+```
+:::
+
+## Hints for HW2 {.scrollable}
+
+
+::: incremental
+
+- Add lines and points to plots (Base R)
+ - If we want to compare two groups
+ - Highlight special cases
+
+:::
+
+::: panel-tabset
+
+#### Density plot
+
+::: fragment
+```{r}
+#| echo: true
+#| out-width: 80%
+# divide the Latino dataset to English- and non-english-speaking groups
+eng_df <- subset(latino, English == 1)
+non_eng_df <- subset(latino, English == 0)
+# plot the density line of achievement for English-speaking group
+plot(density(eng_df$Achieve), col = "blue", main = "Density plot for two groups")
+# add the density line for 
+lines(density(non_eng_df$Achieve), col = "red")
+# add a legend
+legend(x = "topright", legend=c("English", "non-English"), 
+       fill = c("blue","red")
+)
+```
+:::
+
+#### Scatter Plot
+
+:::fragment
+
+```{r}
+#| echo: true
+#| out-width: 80%
+
+# create a scatter plot (x-axis = ImmAge, y-axis = Achieve)
+with(latino, plot(x = ImmAge, y = Achieve, pch = 20))
+# point with ImmYear >= 80
+with(subset(latino, ImmYear >= 80), points(x = ImmAge, y = Achieve, pch = 1, col = "red", cex = 1.5))
+```
+
+:::
+:::
+
+## Lab {.scrollable}
+
+### Hints for HW2
+
+::: incremental
+
+- Missing values
+  - Detect records with missing values
+  
+::: 
+
+::: fragment
+
+```{r}
+#| results: hide
+#| echo: true
+
+#using logic expressions
+subset(latino, !is.na(Achieve) & !is.na(ImmAge))
+
+# a function to find rows with completed case (returns a logic vector)
+complete.cases(latino)
+
+# a function to create a data frame without NA (row-wise removal)
+na.omit(latino)
+
+
+
+```
+
+:::
