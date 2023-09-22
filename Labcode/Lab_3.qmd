@@ -22,18 +22,16 @@ data(airquality)
 cars_1 <- cars
 ```
 
-
 ## Content
 
-- Lab
+-   Lab
 
 ## Before we start
 
-- Question with coding: better attach error message or output (or both);
-- Emails about HW: at least 24 hours before deadline, **unable to response immediately on Friday**;
-- Questions?
-- Attendance: Scan the QR code.
-![Attendance](images/frame.png){.absolute bottom=0 right=70 width="300" height="300"}
+-   Question with coding: better attach error message or output (or both);
+-   Emails about HW: at least 24 hours before deadline, **unable to response immediately on Friday**;
+-   Questions?
+-   Attendance: Scan the QR code. ![Attendance](images/frame.png){.absolute bottom="0" right="70" width="300" height="300"}
 
 # Lab
 
@@ -41,20 +39,19 @@ cars_1 <- cars
 
 ::: incremental
 -   Use the right function to load data:
-    - `read.table()` / `read_table()`  pay attention to file's extensions, and specify delimiters and head rows;
-    - `read.csv()` / `read_csv()` for .csv files;
-    - `read_dta()` in package `haven` for Stata data files (check the dataset fist, some `.dta` files may require extra argument);
-    - `read_xls()` / `read_xlsx()` in package `readxl` for Excel files.
+    -   `read.table()` / `read_table()` pay attention to file's extensions, and specify delimiters and head rows;
+    -   `read.csv()` / `read_csv()` for .csv files;
+    -   `read_dta()` in package `haven` for Stata data files (check the dataset fist, some `.dta` files may require extra argument);
+    -   `read_xls()` / `read_xlsx()` in package `readxl` for Excel files.
 :::
 
 ## Loop operations
 
-
 ::: incremental
-- `while` loop: seldom used, make R break down easily;
-- `for` loop
-  - `foreach` in foreach package
-:::  
+-   `while` loop: seldom used, make R break down easily;
+-   `for` loop
+    -   `foreach` in foreach package
+:::
 
 ::: fragment
 ```{r}
@@ -66,10 +63,10 @@ identical(s, d)
 ```
 :::
 
-
 ## Conditional operations {.scrollable}
 
 ### if statement
+
 ::: incremental
 -   Three ways
 :::
@@ -78,7 +75,7 @@ identical(s, d)
 ### Base R
 
 ::: incremental
-- Cons: need to combine with `for` loop when dealing with dataset.
+-   Cons: need to combine with `for` loop when dealing with dataset.
 :::
 
 ::: fragment
@@ -128,7 +125,6 @@ table(cars_1$speed_rate)
 :::
 :::
 
-
 ```{r}
 #| echo: FALSE
 #| results: hide
@@ -138,9 +134,9 @@ df <- read.csv(file = "data/LatinoEd.csv")
 ## Lab {.scrollable}
 
 ::: incremental
-- A `list` can contain several values/vectors/data frames...
-  - `list[i]` access the $i^{th}$ element of the list, but still a list;
-  - `list[[i]]` the exact $i^{th}$ element.
+-   A `list` can contain several values/vectors/data frames...
+    -   `list[i]` access the $i^{th}$ element of the list, but still a list;
+    -   `list[[i]]` the exact $i^{th}$ element.
 :::
 
 ```{r}
@@ -154,11 +150,10 @@ class(list_1[[1]]) # data frame
 class(list_1[1]) # list
 ```
 
-
 ## Lab
 
-- Why we set default `max_x`, `max_y`, `min_x`, and `min_y` like below?
-  - To ensure the max/min value of the first x/y vector is recorded.
+-   Why we set default `max_x`, `max_y`, `min_x`, and `min_y` like below?
+    -   To ensure the max/min value of the first x/y vector is recorded.
 
 ```{r}
 #| echo: TRUE
@@ -172,22 +167,14 @@ max_x <- -Inf
 ## Legend
 
 ::: incremental
-- Add arguments to make an elegant legend
-  - `x = "topright"`, `cex = 0.8`, etc.
+-   Add arguments to make an elegant legend
+    -   `x = "topright"`, `cex = 0.8`, etc.
 :::
 
 ## hint for Project1
 
-- Expected sd of the means
-  - $\hat{\sigma_{\bar{x}}} = \sigma_{x}/\sqrt{n}$
-- Good luck!
-  - Lab Materials: 
-  
-
-
-
-
-
-
-
-
+-   Expected sd of the means
+    -   $\hat{\sigma_{\bar{x}}} = \sigma_{x}/\sqrt{n}$
+-   Good luck!
+    -   Lab Materials:
+      -   Lab Materials: ![Attendance](images/github.png){.absolute bottom="0" right="70" width="300" height="300"}
