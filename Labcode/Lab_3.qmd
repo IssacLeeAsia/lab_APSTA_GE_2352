@@ -31,7 +31,9 @@ cars_1 <- cars
 -   Question with coding: better attach error message or output (or both);
 -   Emails about HW: at least 24 hours before deadline, **unable to response immediately on Friday**;
 -   Questions?
--   Attendance: Scan the QR code. ![Attendance](images/frame.png){.absolute bottom="0" right="70" width="300" height="300"}
+-   Attendance: Scan the QR code
+  - Attendance code: **week3Attendance**
+![Attendance](images/frame.png){.absolute bottom="0" right="70" width="300" height="300"}
 
 # Lab
 
@@ -176,5 +178,4 @@ max_x <- -Inf
 -   Expected sd of the means
     -   $\hat{\sigma_{\bar{x}}} = \sigma_{x}/\sqrt{n}$
 -   Good luck!
-    -   Lab Materials:
-      -   Lab Materials: ![Attendance](images/github.png){.absolute bottom="0" right="70" width="300" height="300"}
+    -   Lab Materials: ![lab_slides](images/github.png){.absolute bottom="0" right="70" width="300" height="300"}

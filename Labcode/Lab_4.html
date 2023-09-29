@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="Lab_3_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Lab_3_files/libs/quarto-html/tabby.min.js"></script>
-<script src="Lab_3_files/libs/quarto-html/popper.min.js"></script>
-<script src="Lab_3_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="Lab_3_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Lab_3_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="Lab_3_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="Lab_3_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="Lab_4_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Lab_4_files/libs/quarto-html/tabby.min.js"></script>
+<script src="Lab_4_files/libs/quarto-html/popper.min.js"></script>
+<script src="Lab_4_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="Lab_4_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Lab_4_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="Lab_4_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="Lab_4_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.302">
 
   <meta name="author" content="Martin">
-  <meta name="dcterms.date" content="2023-09-22">
-  <title>Lab 3</title>
+  <meta name="dcterms.date" content="2023-09-29">
+  <title>Lab 4</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="Lab_3_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="Lab_3_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="Lab_4_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="Lab_4_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -96,11 +96,11 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="Lab_3_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="Lab_3_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="Lab_3_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="Lab_3_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="Lab_3_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="Lab_4_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="Lab_4_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="Lab_4_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="Lab_4_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="Lab_4_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -391,7 +391,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Lab 3</h1>
+  <h1 class="title">Lab 4</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -401,7 +401,7 @@ Martin
 </div>
 </div>
 
-  <p class="date">2023-09-22</p>
+  <p class="date">2023-09-29</p>
 </section>
 <section id="content" class="slide level2">
 <h2>Content</h2>
@@ -412,11 +412,10 @@ Martin
 <section id="before-we-start" class="slide level2">
 <h2>Before we start</h2>
 <ul>
-<li>Question with coding: better attach error message or output (or both);</li>
-<li>Emails about HW: at least 24 hours before deadline, <strong>unable to response immediately on Friday</strong>;</li>
-<li>Questions?</li>
-<li>Attendance: Scan the QR code</li>
-<li>Attendance code: <strong>week3Attendance</strong> <img data-src="images/frame.png" class="absolute" style="bottom: 0px; right: 70px; width: 300px; height: 300px; " alt="Attendance"></li>
+<li>Attendance: Scan the QR code
+<ul>
+<li>Attendance code: <strong>dens1ty</strong> <img data-src="images/frame.png" class="absolute" style="bottom: 0px; right: 70px; width: 300px; height: 300px; " alt="Attendance"></li>
+</ul></li>
 </ul>
 </section>
 <section>
@@ -424,175 +423,169 @@ Martin
 <h1>Lab</h1>
 
 </section>
-<section id="reading-in-the-data" class="slide level2">
-<h2>Reading in the data</h2>
+<section id="density-plot" class="slide level2 scrollable">
+<h2>Density Plot</h2>
 <div>
-<ul>
-<li class="fragment">Use the right function to load data:
-<ul>
-<li class="fragment"><code>read.table()</code> / <code>read_table()</code> pay attention to file’s extensions, and specify delimiters and head rows;</li>
-<li class="fragment"><code>read.csv()</code> / <code>read_csv()</code> for .csv files;</li>
-<li class="fragment"><code>read_dta()</code> in package <code>haven</code> for Stata data files (check the dataset fist, some <code>.dta</code> files may require extra argument);</li>
-<li class="fragment"><code>read_xls()</code> / <code>read_xlsx()</code> in package <code>readxl</code> for Excel files.</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="loop-operations" class="slide level2">
-<h2>Loop operations</h2>
-<div>
-<ul>
-<li class="fragment"><code>while</code> loop: seldom used, make R break down easily;</li>
-<li class="fragment"><code>for</code> loop
-<ul>
-<li class="fragment"><code>foreach</code> in foreach package</li>
-</ul></li>
-</ul>
+<p>Intuitively, the density plot looks like we connect the midpoint at the top of each bar.</p>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># split d into 10 vectors and combine them by row</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y=</span><span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
-<span id="cb1-3"><a href="#cb1-3"></a>s <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">b=</span><span class="fu">iter</span>(d, <span class="at">by=</span><span class="st">'row'</span>), <span class="at">.combine=</span>rbind) <span class="sc">%do%</span> b</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">identical</span>(s, d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">set.seed</span>(42L)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">500</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># create a histogram</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>hist_p_1 <span class="ot">&lt;-</span> <span class="fu">hist</span>(x, <span class="at">freq =</span> F, </span>
+<span id="cb1-5"><a href="#cb1-5"></a>                 <span class="at">col =</span> <span class="st">"white"</span>, </span>
+<span id="cb1-6"><a href="#cb1-6"></a>                 <span class="at">main =</span> <span class="cn">NULL</span>, </span>
+<span id="cb1-7"><a href="#cb1-7"></a>                 <span class="at">breaks =</span> 20L)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># connect every midpoint </span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">with</span>(hist_p_1, <span class="fu">lines</span>(mids, density, <span class="at">col =</span> <span class="st">"red"</span>))</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># compare with the density line</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">lines</span>(<span class="fu">density</span>(x), <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="Lab_4_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
 </div>
 </div>
 </div>
 </section>
-<section id="conditional-operations" class="slide level2 scrollable">
-<h2>Conditional operations</h2>
-<h3 id="if-statement">if statement</h3>
-<div>
-<ul>
-<li class="fragment">Three ways</li>
-</ul>
-</div>
+<section id="bandwidth" class="slide level2 scrollable">
+<h2>Bandwidth</h2>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Base R</a></li><li><a href="#tabset-1-2">ifelse()</a></li><li><a href="#tabset-1-3">dplyr</a></li></ul>
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Different bandwidth</a></li><li><a href="#tabset-1-2">Mathematical foundation</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <div>
 <ul>
-<li class="fragment">Cons: need to combine with <code>for</code> loop when dealing with dataset.</li>
+<li class="fragment">The smaller bandwidth, the more squiggly the density plot looks (undersmooth)</li>
+<li class="fragment">Large bandwidth may result in oversmooth.</li>
+<li class="fragment">We want something between.</li>
 </ul>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>cars_1<span class="sc">$</span>speed_rate <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">nrow</span>(cars_1))</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(cars_1))) {<span class="cf">if</span> (cars_1<span class="sc">$</span>speed[i] <span class="sc">&lt;=</span> <span class="dv">10</span>) {</span>
-<span id="cb3-3"><a href="#cb3-3"></a>  cars_1<span class="sc">$</span>speed_rate[i] <span class="ot">&lt;-</span> <span class="st">"slow"</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>} <span class="cf">else</span> <span class="cf">if</span> (cars_1<span class="sc">$</span>speed[i] <span class="sc">%in%</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>) {</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  cars_1<span class="sc">$</span>speed_rate[i] <span class="ot">&lt;-</span> <span class="st">"fast"</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>} <span class="cf">else</span> {</span>
-<span id="cb3-7"><a href="#cb3-7"></a>  cars_1<span class="sc">$</span>speed_rate[i] <span class="ot">&lt;-</span> <span class="st">"superfast"</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>}}</span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="fu">table</span>(cars_1<span class="sc">$</span>speed_rate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-     fast      slow superfast 
-       34         9         7 </code></pre>
+<div class="cell-output-display">
+<p><img data-src="Lab_4_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
 </div>
 </div>
 </div>
 </div>
 <div id="tabset-1-2">
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>cars_1<span class="sc">$</span>speed_rate <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(<span class="fu">nrow</span>(cars_1)))</span>
-<span id="cb5-2"><a href="#cb5-2"></a>cars_1<span class="sc">$</span>speed_rate <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(cars_1<span class="sc">$</span>speed <span class="sc">&lt;=</span> <span class="dv">10</span>, </span>
-<span id="cb5-3"><a href="#cb5-3"></a>                            <span class="st">"slow"</span>, </span>
-<span id="cb5-4"><a href="#cb5-4"></a>                            <span class="fu">ifelse</span>(</span>
-<span id="cb5-5"><a href="#cb5-5"></a>                              cars_1<span class="sc">$</span>speed <span class="sc">%in%</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>, </span>
-<span id="cb5-6"><a href="#cb5-6"></a>                              <span class="st">"fast"</span>, </span>
-<span id="cb5-7"><a href="#cb5-7"></a>                              <span class="st">"superfast"</span>))</span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="fu">table</span>(cars_1<span class="sc">$</span>speed_rate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-     fast      slow superfast 
-       34         9         7 </code></pre>
+<p><span class="math display">\[
+\hat{f}(x;h)=\frac{1}{n h} \sum_{i=1}^n K\left(\frac{x-x_i}{h}\right)
+\]</span></p>
+<ul>
+<li>Kernel density function
+<ul>
+<li>Given a set of independent and identically distributed samples <span class="math inline">\(x = {x_1, x_2, \cdots, x_n}\)</span>, the KDE process can be formulated as below.</li>
+<li>Essentially, for a specific location of <span class="math inline">\(\hat{f}\)</span>, the kernel <span class="math inline">\(K\)</span> is assigning a weight for any <span class="math inline">\(x_i\)</span> regarding their distance to <span class="math inline">\(x\)</span>.</li>
+<li><span class="math inline">\(K\)</span> is the kernel function that satisfies <span class="math inline">\(\int_{-\infty}^{\infty} K(t)dt = 1\)</span>. <span class="math inline">\(H\)</span> is a bandwidth parameter, controlling that distance.
+<ul>
+<li><a href="https://billc.io/2023/01/kde-from-scratch/">Reference</a></li>
+<li><a href="https://mathisonian.github.io/kde/">Interesting interactive website</a></li>
+</ul></li>
+</ul></li>
+</ul>
 </div>
 </div>
 </div>
-</div>
-<div id="tabset-1-3">
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>cars_1 <span class="ot">&lt;-</span> cars_1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>speed_rate)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>cars_1 <span class="ot">&lt;-</span> cars_1 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">speed_rate =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-3"><a href="#cb7-3"></a>  speed <span class="sc">&lt;=</span> <span class="dv">10</span> <span class="sc">~</span> <span class="st">"slow"</span>,</span>
-<span id="cb7-4"><a href="#cb7-4"></a>  speed <span class="sc">%in%</span> (<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">~</span> <span class="st">"fast"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5"></a>  speed <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">~</span> <span class="st">"superfast"</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>))</span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="fu">table</span>(cars_1<span class="sc">$</span>speed_rate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-     fast      slow superfast 
-       34         9         7 </code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+</section></section>
+<section>
+<section id="boxcar-density" class="title-slide slide level1 center">
+<h1>Boxcar density</h1>
+
 </section>
-<section id="lab-1" class="slide level2 scrollable">
-<h2>Lab</h2>
+<section id="simpler-example" class="slide level2 scrollable">
+<h2>Simpler example</h2>
 <div>
 <ul>
-<li class="fragment">A <code>list</code> can contain several values/vectors/data frames…
+<li class="fragment">Rough estimation of density
 <ul>
-<li class="fragment"><code>list[i]</code> access the <span class="math inline">\(i^{th}\)</span> element of the list, but still a list;</li>
-<li class="fragment"><code>list[[i]]</code> the exact <span class="math inline">\(i^{th}\)</span> element.</li>
+<li class="fragment"><span class="math inline">\(n\)</span>: nubmer of grid points; here we set <span class="math inline">\(n = 10\)</span></li>
+<li class="fragment">frac: the fraction of available data on either side of evaluation point. It determines the total width of the boxcar.
+<ul>
+<li class="fragment"><span class="math inline">\(frac = \frac{2}{9}\)</span>, the total width is 2, 1 on each side.</li>
 </ul></li>
+</ul></li>
+<li class="fragment">We move the boxcar to each evaluation points to see how many data points inside the boxcar</li>
 </ul>
 </div>
+</section>
+<section id="generate-data" class="slide level2 scrollable">
+<h2>Generate data</h2>
+<div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>list_1 <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb9-2"><a href="#cb9-2"></a>list_1[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">head</span>(cars, <span class="at">n =</span> <span class="dv">6</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>list_1[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># classes</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="fu">class</span>(list_1[[<span class="dv">1</span>]]) <span class="co"># data frame</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="fu">class</span>(list_1[<span class="dv">1</span>]) <span class="co"># list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>vec <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">50</span>, <span class="at">replace =</span> T)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># evaluation points</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span>; (eval_points <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(vec), <span class="fu">max</span>(vec), <span class="at">length =</span> n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
-</section>
-<section id="lab-2" class="slide level2">
-<h2>Lab</h2>
-<ul>
-<li>Why we set default <code>max_x</code>, <code>max_y</code>, <code>min_x</code>, and <code>min_y</code> like below?
-<ul>
-<li>To ensure the max/min value of the first x/y vector is recorded.</li>
-</ul></li>
-</ul>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># either side's width of a boxcar</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>frac <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">/</span><span class="dv">9</span>; (half_width <span class="ot">&lt;-</span> (<span class="fu">diff</span>(<span class="fu">range</span>(vec))<span class="sc">*</span>(<span class="dv">2</span><span class="sc">/</span><span class="dv">9</span>))<span class="sc">/</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># ten "boxcars"</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>(boxcars <span class="ot">&lt;-</span> (<span class="fu">sapply</span>(eval_points, <span class="cf">function</span>(x) <span class="fu">c</span>(x<span class="sc">-</span>half_width, x<span class="sc">+</span>half_width))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+[1,]    0    1    2    3    4    5    6    7    8     9
+[2,]    2    3    4    5    6    7    8    9   10    11</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>max_x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="cn">Inf</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  min_x <span class="ot">&lt;-</span> <span class="cn">Inf</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  max_y <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>  min_y <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="Lab_4_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+</div>
+</div>
 </div>
 </section>
-<section id="legend" class="slide level2">
-<h2>Legend</h2>
-<div>
+<section id="first-evaluation-point" class="slide level2">
+<h2>First evaluation point</h2>
 <ul>
-<li class="fragment">Add arguments to make an elegant legend
-<ul>
-<li class="fragment"><code>x = "topright"</code>, <code>cex = 0.8</code>, etc.</li>
-</ul></li>
+<li><span class="math inline">\(x = 1\)</span>, total range <span class="math inline">\([0,2]\)</span></li>
+<li>number of datapoints: <span class="math inline">\(5+7=12\)</span></li>
 </ul>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="Lab_4_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</div>
+</div>
 </div>
 </section>
-<section id="hint-for-project1" class="slide level2">
-<h2>hint for Project1</h2>
+<section id="second-evaluation-point" class="slide level2">
+<h2>Second evaluation point</h2>
 <ul>
-<li>Expected sd of the means
+<li><span class="math inline">\(x = 2\)</span>, total range <span class="math inline">\([1,3]\)</span></li>
+<li>number of datapoints: <span class="math inline">\(5+7=12\)</span></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="Lab_4_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="final-scatter-plot" class="slide level2">
+<h2>Final scatter plot</h2>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="Lab_4_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="finally" class="slide level2">
+<h2>Finally…</h2>
 <ul>
-<li><span class="math inline">\(\hat{\sigma_{\bar{x}}} = \sigma_{x}/\sqrt{n}\)</span></li>
-</ul></li>
 <li>Good luck!
 <ul>
-<li>Lab Materials: <img data-src="images/github.png" class="absolute" style="bottom: 0px; right: 70px; width: 300px; height: 300px; " alt="lab_slides"></li>
+<li>Lab Materials: <img data-src="images/github.png" class="absolute" style="bottom: 0px; right: 70px; width: 500px; height: 500px; " alt="lab_slides"></li>
 </ul></li>
 </ul>
 <div class="footer footer-default">
@@ -603,19 +596,19 @@ Martin
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="Lab_3_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="Lab_4_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="Lab_3_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="Lab_3_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="Lab_3_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="Lab_3_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="Lab_3_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="Lab_4_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="Lab_4_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="Lab_4_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="Lab_4_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="Lab_4_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="Lab_3_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="Lab_3_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="Lab_3_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="Lab_3_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="Lab_4_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="Lab_4_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="Lab_4_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="Lab_4_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
