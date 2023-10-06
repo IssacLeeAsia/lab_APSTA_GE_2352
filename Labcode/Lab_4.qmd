@@ -11,6 +11,7 @@ editor: visual
 
 ```{r}
 #| include: false
+#| 
 library(tidyverse)
 library(foreach)
 library(iterators)
