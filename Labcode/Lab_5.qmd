@@ -28,7 +28,7 @@ theme_set(theme_classic())
     - plz go to the Lab you registered for
     - We removed those records with wrong labs.
   - Attendance code: **paramet0r** (replace the second "e" with "0")
-![Attendance](images/frame.png){.absolute top="0" right="0" width="300" height="300"}
+![Attendance](images/qrcode.png){.absolute top="0" right="0" width="300" height="300"}
 
 # Lab
 
