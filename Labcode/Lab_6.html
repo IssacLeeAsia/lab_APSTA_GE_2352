@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="Lab_5_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Lab_5_files/libs/quarto-html/tabby.min.js"></script>
-<script src="Lab_5_files/libs/quarto-html/popper.min.js"></script>
-<script src="Lab_5_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="Lab_5_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Lab_5_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="Lab_5_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="Lab_5_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="Lab_6_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Lab_6_files/libs/quarto-html/tabby.min.js"></script>
+<script src="Lab_6_files/libs/quarto-html/popper.min.js"></script>
+<script src="Lab_6_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="Lab_6_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Lab_6_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="Lab_6_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="Lab_6_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.302">
 
   <meta name="author" content="Martin">
-  <meta name="dcterms.date" content="2023-09-29">
-  <title>Lab 5</title>
+  <meta name="dcterms.date" content="2023-10-13">
+  <title>Lab 6</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="Lab_5_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="Lab_5_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="Lab_6_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="Lab_6_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -96,11 +96,11 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="Lab_5_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="Lab_5_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="Lab_5_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="Lab_5_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="Lab_5_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="Lab_6_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="Lab_6_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="Lab_6_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="Lab_6_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="Lab_6_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -391,7 +391,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Lab 5</h1>
+  <h1 class="title">Lab 6</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -401,12 +401,14 @@ Martin
 </div>
 </div>
 
-  <p class="date">2023-09-29</p>
+  <p class="date">2023-10-13</p>
 </section>
 <section id="content" class="slide level2">
 <h2>Content</h2>
 <ul>
 <li>Lab</li>
+<li><code>apply()</code>, <code>lapply()/sapply()</code>, and <code>tapply()</code></li>
+<li>re-do smoothing</li>
 </ul>
 </section>
 <section id="before-we-start" class="slide level2">
@@ -414,133 +416,221 @@ Martin
 <ul>
 <li>Attendance: Scan the QR code
 <ul>
-<li>Week: 5</li>
-<li>Lab: Martin’s
-<ul>
-<li>plz go to the Lab you registered for</li>
-<li>We removed those records with wrong labs.</li>
-</ul></li>
-<li>Attendance code: <strong>paramet0r</strong> (replace the second “e” with “0”) <img data-src="images/qrcode.png" class="absolute" style="top: 0px; right: 0px; width: 300px; height: 300px; " alt="Attendance"></li>
+<li>Week: 6</li>
+<li>Lab: Martin’s</li>
+<li>Attendance code: <strong>app1y</strong> (replace ‘’l’’ with “1”) <img data-src="images/qrcode.png" class="absolute" style="top: 0px; right: 0px; width: 300px; height: 300px; " alt="Attendance"></li>
 </ul></li>
 </ul>
 </section>
 <section>
-<section id="lab" class="title-slide slide level1 center">
-<h1>Lab</h1>
-
+<section id="apply-family" class="title-slide slide level1 center">
+<h1><code>apply</code> family</h1>
+<p>motivation: get rid of loop</p>
 </section>
-<section id="smoothing-with-a-small-window" class="slide level2 scrollable">
-<h2>Smoothing with a small window</h2>
+<section id="apply" class="slide level2 scrollable">
+<h2><code>apply()</code></h2>
 <div>
-<p>Aim: explore the use of moving average in smoothing data</p>
-<p>We will use the airquality data as an example</p>
-</div>
-</section>
-<section id="explore-the-airquality-data" class="slide level2 scrollable">
-<h2>Explore the airquality data</h2>
-<p>What happened if we use <code>Day</code>?</p>
-<div>
+<p>A function operates on <strong>matrices</strong> and <strong>arrays</strong>.</p>
 <ul>
-<li class="fragment"><code>Day</code> is nested within <code>Month</code></li>
-<li class="fragment">We have to combine <code>Day</code> and <code>Month</code> into <code>Date</code>
+<li class="fragment"><code>MARGIN =</code> is the direction of the operation:
 <ul>
-<li class="fragment">requires a specific year</li>
+<li class="fragment">2 column-wise</li>
+<li class="fragment">1 row-wise</li>
 </ul></li>
-</ul>
-</div>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Day</a></li><li><a href="#tabset-1-2">Date</a></li><li><a href="#tabset-1-3">Scatterplot with date</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="Lab_5_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
-</div>
-</div>
-</div>
-<div id="tabset-1-2">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># change format of a column as date using lubridate</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>airquality<span class="sc">$</span>Date <span class="ot">&lt;-</span> <span class="fu">ISOdate</span>(<span class="at">year=</span><span class="dv">2018</span>,              <span class="co"># year</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>                            <span class="at">month=</span>airquality<span class="sc">$</span>Month, <span class="co"># month</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>                            <span class="at">day=</span>airquality<span class="sc">$</span>Day,</span>
-<span id="cb1-6"><a href="#cb1-6"></a>                           <span class="at">tz =</span> <span class="st">"America/New_York"</span>)     <span class="co"># day</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">head</span>(airquality<span class="sc">$</span>Date, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2018-05-01 12:00:00 EDT" "2018-05-02 12:00:00 EDT"
-[3] "2018-05-03 12:00:00 EDT"</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-1-3">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="Lab_5_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="review-of-vector-indexing" class="slide level2">
-<h2>Review of vector indexing</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>), <span class="at">size =</span> <span class="dv">5</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 24 77 21 51 96</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>x[<span class="sc">-</span><span class="dv">1</span>] <span class="co"># remove the first element</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 77 21 51 96</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>x[<span class="dv">0</span>] <span class="co"># null</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>integer(0)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>x[<span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>] <span class="co"># first three elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 24 77 21</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>x[<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>] <span class="co"># index number &gt; length results in NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 96 NA NA</code></pre>
-</div>
-</div>
-</section>
-<section id="nas-in-median" class="slide level2">
-<h2>NAs in <code>median</code></h2>
+<li class="fragment">We simulate our sample data:
 <ul>
-<li>If there is an NA in the vector, <code>median</code> will return an NA.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] NA</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">var</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="dv">2</span>))) <span class="co"># so will variance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] NA</code></pre>
-</div>
-</div>
-</section>
-<section id="calaulte-medians" class="slide level2">
-<h2>Calaulte medians</h2>
-<div>
-<ul>
-<li class="fragment">In snippet 1-D, why we use <code>median(airquality$Wind[(i - 1):(i + 2)], na.rm = TRUE)</code> when <code>i == 1</code>?
-<ul>
-<li class="fragment">If we don’t add this condition, <code>airquality$Wind[-1:3]</code> will return an error message.</li>
+<li class="fragment">1000 students in a school with three grades (1 2 3) took two test this year.</li>
+<li class="fragment"><code>test_1</code> follows a uniform distribution <span class="math inline">\(Unif(20,90)\)</span>; obviously the test was too difficult.</li>
+<li class="fragment"><code>test_2</code> is much easier, foll0wing <span class="math inline">\(Unif(80:100)\)</span>.</li>
 </ul></li>
 </ul>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>x[<span class="sc">-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">set.seed</span>(42L)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>df_1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, </span>
+<span id="cb1-3"><a href="#cb1-3"></a>                   <span class="at">grade =</span> <span class="fu">as.factor</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fl">1e3</span>, <span class="at">replace =</span> T)),</span>
+<span id="cb1-4"><a href="#cb1-4"></a>                   <span class="at">test_1 =</span> <span class="fu">sample</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">70</span>, <span class="fl">1e3</span>, <span class="at">replace =</span> T),</span>
+<span id="cb1-5"><a href="#cb1-5"></a>                   <span class="at">test_2 =</span> <span class="fu">sample</span>(<span class="dv">80</span><span class="sc">:</span><span class="dv">100</span>, <span class="fl">1e3</span>, <span class="at">replace =</span> T))</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># calculate the average of test_1 and test_2 for each row</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>df_1<span class="sc">$</span>avg <span class="ot">&lt;-</span> <span class="fu">apply</span>(df_1[, <span class="fu">c</span>(<span class="st">"test_1"</span>, <span class="st">"test_2"</span>)], <span class="dv">1</span>, mean)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">head</span>(df_1, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id grade test_1 test_2  avg
+1  1     1     66     96 81.0
+2  2     1     57     99 78.0
+3  3     1     63     88 75.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># calculate means for test_1 and test_2</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">apply</span>(df_1[, <span class="fu">c</span>(<span class="st">"test_1"</span>, <span class="st">"test_2"</span>)], <span class="dv">2</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>test_1 test_2 
+44.932 90.192 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># if you use the this function on vectors</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">apply</span>(<span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">10</span>), <span class="dv">2</span>, is.numeric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in x[-1:3]: only 0's may be mixed with negative subscripts</code></pre>
+<pre><code>Error in apply(runif(20, 0, 10), 2, is.numeric): dim(X) must have a positive length</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="lapply-and-sapply" class="slide level2 scrollable">
+<h2><code>lapply()</code> and <code>sapply()</code></h2>
+<div>
+<ul>
+<li class="fragment">operate not only on matrices/arrays but also vectors
+<ul>
+<li class="fragment">when on matrices/arrays, operates <code>FUN</code> column-wise</li>
+</ul></li>
+<li class="fragment">difference: <code>lapply()</code> returns a list, while <code>sapply()</code> returns a vector or matrix.</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">lapply</span>(df_1[, <span class="fu">c</span>(<span class="st">"test_1"</span>, <span class="st">"test_2"</span>)], mean) <span class="co"># a list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$test_1
+[1] 44.932
+
+$test_2
+[1] 90.192</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">sapply</span>(df_1[, <span class="fu">c</span>(<span class="st">"test_1"</span>, <span class="st">"test_2"</span>)], mean) <span class="co"># a vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>test_1 test_2 
+44.932 90.192 </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="fun" class="slide level2 scrollable">
+<h2><code>FUN</code></h2>
+<div>
+<p>Let’s calculate <strong>98%</strong> confidence interval (CI) of means of <code>avg</code> in each class, using our customized functions in <code>sapply()</code>.</p>
+<ul>
+<li class="fragment">We need means of the average score (<span class="math inline">\(\bar{X}\)</span>), sample variance (<span class="math inline">\(\hat{\sigma} = S\)</span>), and standard error.</li>
+<li class="fragment">Confidence level critical value (95%), z = 1.96, what does it mean and how we get it?
+<ul>
+<li class="fragment">How to get 98% confidence level critical value?</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">with</span>(df_1, <span class="fu">sapply</span>(<span class="fu">split</span>(avg, grade), <span class="cf">function</span>(x) {</span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">c</span>(</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="fu">mean</span>(x) <span class="sc">-</span> (<span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x))<span class="sc">*</span><span class="fu">qnorm</span>(<span class="fl">0.99</span>)) , <span class="co"># lower boundary</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>             <span class="fu">mean</span>(x) <span class="sc">+</span> (<span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x))<span class="sc">*</span><span class="fu">qnorm</span>(<span class="fl">0.99</span>))                                  <span class="co"># upper boundary</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  )</span>
+<span id="cb11-6"><a href="#cb11-6"></a>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="tapply" class="slide level2">
+<h2><code>tapply()</code></h2>
+<div>
+<p>Motivation: - We want to group our matrices/vectors with an index and operate our functions on them.</p>
+<p>The function is similar to <code>apply()</code>, but replace <code>MARGIN=</code> with <code>INDEX=</code></p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">with</span>(df_1, <span class="fu">tapply</span>(avg, grade, <span class="cf">function</span>(x) <span class="fu">c</span>(<span class="fu">mean</span>(x), <span class="fu">sd</span>(x))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`1`
+[1] 67.506079  7.838011
+
+$`2`
+[1] 67.962500  7.878207
+
+$`3`
+[1] 67.157556  7.937717</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="smoothing-again" class="slide level2">
+<h2>Smoothing (again…)</h2>
+<div>
+<p>A window moving along the <code>DayInSeries</code>, which is the row number when the data are ordered as a time series.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>batchSize <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>daysGroupedBy3_1 <span class="ot">&lt;-</span> <span class="fu">floor</span>((airquality<span class="sc">$</span>DayInSeries<span class="dv">-1</span>)<span class="sc">/</span><span class="dv">3</span>) <span class="do">##start with the furthest to the left.</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>daysGroupedBy3_2 <span class="ot">&lt;-</span> <span class="fu">floor</span>((airquality<span class="sc">$</span>DayInSeries<span class="dv">-2</span>)<span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a>daysGroupedBy3_3 <span class="ot">&lt;-</span> <span class="fu">floor</span>((airquality<span class="sc">$</span>DayInSeries<span class="dv">-3</span>)<span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb14-5"><a href="#cb14-5"></a>meansBy3_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="fu">tapply</span>(airquality<span class="sc">$</span>Ozone,daysGroupedBy3_1,mean,<span class="at">na.rm=</span>T)) <span class="co">#missing "-1" entry</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>meansBy3_2 <span class="ot">&lt;-</span> <span class="fu">tapply</span>(airquality<span class="sc">$</span>Ozone,daysGroupedBy3_2,mean,<span class="at">na.rm=</span>T)</span>
+<span id="cb14-7"><a href="#cb14-7"></a>meansBy3_3 <span class="ot">&lt;-</span> <span class="fu">tapply</span>(airquality<span class="sc">$</span>Ozone,daysGroupedBy3_3,mean,<span class="at">na.rm=</span>T) </span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#weave them together:</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co">#why do I rbind?</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>meansWoven <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">rbind</span>(meansBy3_1,meansBy3_2,meansBy3_3))</span>
+<span id="cb14-11"><a href="#cb14-11"></a>meansWoven</span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="fu">plot</span>(airquality<span class="sc">$</span>DayInSeries,airquality<span class="sc">$</span>Ozone)</span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(meansWoven)<span class="sc">-</span>(batchSize<span class="sc">/</span><span class="dv">2</span>),meansWoven,<span class="at">col=</span><span class="dv">2</span>) <span class="co">#we generate more running means than observations due to boundary effects.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="harry-potter-nyu" class="slide level2 scrollable">
+<h2>Harry Potter @ NYU</h2>
+<p>We want to extract student names, email addresses, and schools.</p>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Lab</a></li><li><a href="#tabset-1-2">Regular expression</a></li><li><a href="#tabset-1-3">Resources</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># extract only email address </span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>student_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Harry Potter/harry.p@nyu.edu"          
+[2] "Hermione Granger/hermione.g@nyu.edu"   
+[3] "Draco Malfoy/draco.m@nyu.edu"          
+[4] "Dobby/dobby.d@nyu.edu"                 
+[5] "Fleur Delacour/fleur.d@beauxbatons.edu"
+[6] "Luna Lovegood/luna.l@nyu.edu"          
+[7] "Viktor Krum/viktor.k@dumstrang.edu"    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>name <span class="ot">&lt;-</span>  <span class="fu">lapply</span>( <span class="fu">strsplit</span>(student_list, <span class="at">split =</span> <span class="st">"/"</span> ), <span class="at">FUN =</span> <span class="cf">function</span>(x) x[<span class="dv">1</span>] )</span>
+<span id="cb17-2"><a href="#cb17-2"></a>email <span class="ot">&lt;-</span> <span class="fu">lapply</span>( <span class="fu">strsplit</span>(student_list, <span class="at">split =</span> <span class="st">"/"</span> ), <span class="at">FUN =</span> <span class="cf">function</span>(x) x[<span class="dv">2</span>] )</span>
+<span id="cb17-3"><a href="#cb17-3"></a></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="co"># extract only institution's name -- </span><span class="al">NOTE</span><span class="co"> HOW COMPLICATED THIS IS</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>domain <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">".*@"</span>,<span class="st">""</span> , email )</span>
+<span id="cb17-6"><a href="#cb17-6"></a>school <span class="ot">&lt;-</span> <span class="fu">substr</span>(domain, <span class="dv">1</span>, <span class="fu">nchar</span>(domain)<span class="sc">-</span><span class="dv">4</span>)</span>
+<span id="cb17-7"><a href="#cb17-7"></a></span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="fu">cbind</span>(name, email, school)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     name               email                     school       
+[1,] "Harry Potter"     "harry.p@nyu.edu"         "nyu"        
+[2,] "Hermione Granger" "hermione.g@nyu.edu"      "nyu"        
+[3,] "Draco Malfoy"     "draco.m@nyu.edu"         "nyu"        
+[4,] "Dobby"            "dobby.d@nyu.edu"         "nyu"        
+[5,] "Fleur Delacour"   "fleur.d@beauxbatons.edu" "beauxbatons"
+[6,] "Luna Lovegood"    "luna.l@nyu.edu"          "nyu"        
+[7,] "Viktor Krum"      "viktor.k@dumstrang.edu"  "dumstrang"  </code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<p>We can use regular expression to extract <code>school</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">gsub</span>(<span class="st">".*@|</span><span class="sc">\\</span><span class="st">..*"</span>, <span class="st">""</span>, domain)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "nyu"         "nyu"         "nyu"         "nyu"         "beauxbatons"
+[6] "nyu"         "dumstrang"  </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<p>Web courses:</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html">Regular expression</a></li>
+<li><a href="https://app.datacamp.com/learn/skill-tracks/text-mining-with-r">Text Mining with R</a></li>
+</ul>
+<p>R packages: <code>stringr</code>, <code>tidytext</code>, <code>quanteda</code></p>
+<p>NYU course:</p>
+<p>APSTA-GE 2047 (Ravi Shroff) - Will cover some text analysis</p>
+<p>DS-GA 1015 (pending) - Dive into text analysis</p>
 </div>
 </div>
 </div>
@@ -561,19 +651,19 @@ Martin
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="Lab_5_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="Lab_6_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="Lab_5_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="Lab_5_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="Lab_5_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="Lab_5_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="Lab_5_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="Lab_6_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="Lab_6_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="Lab_6_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="Lab_6_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="Lab_6_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="Lab_5_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="Lab_5_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="Lab_5_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="Lab_5_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="Lab_6_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="Lab_6_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="Lab_6_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="Lab_6_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

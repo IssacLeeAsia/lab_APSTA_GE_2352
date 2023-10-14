@@ -29,9 +29,8 @@ cars_1 <- cars
 
 ## Before we start
 
-- Attendance: Scan the QR code
-  - Attendance code: **dens1ty**
-![Attendance](images/frame.png){.absolute bottom="0" right="70" width="300" height="300"}
+-   Attendance: Scan the QR code
+    -   Attendance code: **dens1ty** ![Attendance](images/frame.png){.absolute bottom="0" right="70" width="300" height="300"}
 
 # Lab
 
@@ -64,9 +63,9 @@ lines(density(x), col = "blue")
 ### Different bandwidth
 
 ::: incremental
-- The smaller bandwidth, the more squiggly the density plot looks (undersmooth)
-- Large bandwidth may result in oversmooth.
-- We want something between.
+-   The smaller bandwidth, the more squiggly the density plot looks (undersmooth)
+-   Large bandwidth may result in oversmooth.
+-   We want something between.
 :::
 
 ::: fragment
@@ -94,14 +93,12 @@ $$
 \hat{f}(x;h)=\frac{1}{n h} \sum_{i=1}^n K\left(\frac{x-x_i}{h}\right)
 $$
 
-- Kernel density function
-  - Given a set of independent and identically distributed samples $x = {x_1, x_2, \cdots, x_n}$, the KDE process can be formulated as below.
-  - Essentially, for a specific location of $\hat{f}$, the kernel $K$ is assigning a weight for any $x_i$ regarding their distance to $x$.
-  - $K$ is the kernel function that satisfies $\int_{-\infty}^{\infty} K(t)dt = 1$. $H$ is a bandwidth parameter, controlling that distance.
-    - [Reference](https://billc.io/2023/01/kde-from-scratch/)
-    - [Interesting interactive website](https://mathisonian.github.io/kde/)
-
-
+-   Kernel density function
+    -   Given a set of independent and identically distributed samples $x = {x_1, x_2, \cdots, x_n}$, the KDE process can be formulated as below.
+    -   Essentially, for a specific location of $\hat{f}$, the kernel $K$ is assigning a weight for any $x_i$ regarding their distance to $x$.
+    -   $K$ is the kernel function that satisfies $\int_{-\infty}^{\infty} K(t)dt = 1$. $H$ is a bandwidth parameter, controlling that distance.
+        -   [Reference](https://billc.io/2023/01/kde-from-scratch/)
+        -   [Interesting interactive website](https://mathisonian.github.io/kde/)
 :::
 
 # Boxcar density
@@ -109,11 +106,11 @@ $$
 ## Simpler example {.scrollable}
 
 ::: incremental
-- Rough estimation of density
-  - $n$: nubmer of grid points; here we set $n = 10$
-  - frac: the fraction of available data on either side of evaluation point. It determines the total width of the boxcar.
-    - $frac = \frac{2}{9}$, the total width is 2, 1 on each side.
-- We move the boxcar to each evaluation points to see how many data points inside the boxcar
+-   Rough estimation of density
+    -   $n$: nubmer of grid points; here we set $n = 10$
+    -   frac: the fraction of available data on either side of evaluation point. It determines the total width of the boxcar.
+        -   $frac = \frac{2}{9}$, the total width is 2, 1 on each side.
+-   We move the boxcar to each evaluation points to see how many data points inside the boxcar
 :::
 
 ## Generate data {.scrollable}
@@ -148,11 +145,10 @@ plot(1, type = "n", xlab = "",
 p <- recordPlot()
 ```
 
-
 ## First evaluation point
 
-- $x = 1$, total range $[0,2]$
-- number of datapoints: $5+7=12$
+-   $x = 1$, total range $[0,2]$
+-   number of datapoints: $5+7=12$
 
 ::: fragment
 ```{r}
@@ -171,8 +167,8 @@ points(eval_points[1], sum(table(vec)[0:2]), pch = 20)
 
 ## Second evaluation point
 
-- $x = 2$, total range $[1,3]$
-- number of datapoints: $5+7=12$
+-   $x = 2$, total range $[1,3]$
+-   number of datapoints: $5+7=12$
 
 ::: fragment
 ```{r}
@@ -191,7 +187,6 @@ points(eval_points[2], sum(table(vec)[1:3]), pch = 20)
 :::
 
 ## Final scatter plot
-
 
 ::: fragment
 ```{r}

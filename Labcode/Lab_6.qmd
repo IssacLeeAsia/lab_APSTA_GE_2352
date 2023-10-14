@@ -1,0 +1,233 @@
+---
+title: "Lab 6"
+author: "Martin"
+date: 10/13/2023
+date-format: iso
+format: 
+  revealjs:
+    reference-location: document
+editor: visual
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+data(airquality)
+theme_set(theme_classic())
+```
+
+## Content
+
+-   Lab
+  - `apply()`, `lapply()/sapply()`, and `tapply()`
+  - re-do smoothing
+
+## Before we start
+
+-   Attendance: Scan the QR code
+    -   Week: 6
+    -   Lab: Martin's
+    -   Attendance code: **app1y** (replace ''l'' with "1") ![Attendance](images/qrcode.png){.absolute top="0" right="0" width="300" height="300"}
+
+# `apply` family
+
+motivation: get rid of loop
+
+## `apply()` {.scrollable}
+
+::: incremental
+
+A function operates on **matrices** and **arrays**.
+
+- `MARGIN = ` is the direction of the operation: 
+    - 2 column-wise
+    - 1 row-wise
+    
+- We simulate our sample data: 
+  - 1000 students in a school with three grades (1 2 3) took two test this year.
+  - `test_1` follows a uniform distribution $Unif(20,90)$; obviously the test was too difficult.
+  - `test_2` is much easier, foll0wing $Unif(80:100)$.
+  
+:::
+
+
+::: fragment
+```{r}
+#| echo: true
+#| error: true
+set.seed(42L)
+df_1 <- data.frame(id = 1:1e3, 
+                   grade = as.factor(sample(1:3, 1e3, replace = T)),
+                   test_1 = sample(20:70, 1e3, replace = T),
+                   test_2 = sample(80:100, 1e3, replace = T))
+# calculate the average of test_1 and test_2 for each row
+df_1$avg <- apply(df_1[, c("test_1", "test_2")], 1, mean)
+head(df_1, 3)
+# calculate means for test_1 and test_2
+apply(df_1[, c("test_1", "test_2")], 2, mean)
+# if you use the this function on vectors
+apply(runif(20, 0, 10), 2, is.numeric)
+```
+:::
+
+## `lapply()` and `sapply()` {.scrollable}
+
+::: incremental
+- operate not only on matrices/arrays but also vectors
+  - when on matrices/arrays, operates `FUN` column-wise
+- difference: `lapply()` returns a list, while `sapply()` returns a vector or matrix.
+
+:::
+
+::: fragment
+```{r}
+#| echo: true
+lapply(df_1[, c("test_1", "test_2")], mean) # a list
+sapply(df_1[, c("test_1", "test_2")], mean) # a vector
+```
+:::
+
+## `FUN` {.scrollable}
+
+::: incremental
+Let's calculate **98%** confidence interval (CI) of means of `avg` in each class, using our customized functions in `sapply()`.
+
+- We need means of the average score ($\bar{X}$), sample variance ($\hat{\sigma} = S$), and standard error.
+- Confidence level critical value (95%), z = 1.96, what does it mean and how we get it?
+  - How to get 98% confidence level critical value?
+:::
+
+::: fragment
+
+```{r}
+#| echo: true
+#| results: hide
+#| error: true
+with(df_1, sapply(split(avg, grade), function(x) {
+  c(
+    mean(x) - (sd(x)/sqrt(length(x))*qnorm(0.99)) , # lower boundary
+             mean(x) + (sd(x)/sqrt(length(x))*qnorm(0.99))                                  # upper boundary
+  )
+}))
+```
+
+:::
+
+## `tapply()`
+
+::: incremental
+Motivation:
+- We want to group our matrices/vectors with an index and operate our functions on them.
+
+The function is similar to `apply()`, but replace `MARGIN=` with `INDEX=`
+:::
+
+
+
+::: fragment
+```{r}
+#| echo: true
+with(df_1, tapply(avg, grade, function(x) c(mean(x), sd(x))))
+```
+:::
+
+
+## Smoothing (again...)
+
+::: incremental
+A window moving along the `DayInSeries`, which is the row number when the data are ordered as a time series.
+:::
+
+```{r}
+#| echo: false
+airquality$DayInSeries <- 1:nrow(airquality)
+```
+
+```{r}
+#| echo: true
+#| output: false
+batchSize <- 3
+daysGroupedBy3_1 <- floor((airquality$DayInSeries-1)/3) ##start with the furthest to the left.
+daysGroupedBy3_2 <- floor((airquality$DayInSeries-2)/3)
+daysGroupedBy3_3 <- floor((airquality$DayInSeries-3)/3)
+meansBy3_1 <- c(NA,tapply(airquality$Ozone,daysGroupedBy3_1,mean,na.rm=T)) #missing "-1" entry
+meansBy3_2 <- tapply(airquality$Ozone,daysGroupedBy3_2,mean,na.rm=T)
+meansBy3_3 <- tapply(airquality$Ozone,daysGroupedBy3_3,mean,na.rm=T) 
+#weave them together:
+#why do I rbind?
+meansWoven <- as.vector(rbind(meansBy3_1,meansBy3_2,meansBy3_3))
+
+rbind(meansBy3_1,meansBy3_2,meansBy3_3)
+as.vector(rbind(meansBy3_1,meansBy3_2,meansBy3_3))
+plot(airquality$DayInSeries,airquality$Ozone)
+lines(1:length(meansWoven)-(batchSize/2),meansWoven,col=2) #we generate more running means than observations due to boundary effects.
+```
+
+## Harry Potter @ NYU {.scrollable}
+
+```{r}
+#| echo: false
+student_list <- c("Harry Potter/harry.p@nyu.edu",          
+"Hermione Granger/hermione.g@nyu.edu",   
+"Draco Malfoy/draco.m@nyu.edu",          
+"Dobby/dobby.d@nyu.edu",                 
+"Fleur Delacour/fleur.d@beauxbatons.edu",
+"Luna Lovegood/luna.l@nyu.edu",          
+"Viktor Krum/viktor.k@dumstrang.edu")
+```
+
+We want to extract student names, email addresses, and schools.
+
+::: panel-tabset
+
+### Lab
+::: fragment
+```{r}
+#| echo: true
+# extract only email address 
+student_list
+name <-  lapply( strsplit(student_list, split = "/" ), FUN = function(x) x[1] )
+email <- lapply( strsplit(student_list, split = "/" ), FUN = function(x) x[2] )
+
+# extract only institution's name -- NOTE HOW COMPLICATED THIS IS
+domain <- sub(".*@","" , email )
+school <- substr(domain, 1, nchar(domain)-4)
+
+cbind(name, email, school)
+```
+:::
+
+### Regular expression
+
+We can use regular expression to extract `school`
+
+```{r}
+#| echo: true
+gsub(".*@|\\..*", "", domain)
+```
+
+### Resources
+
+Web courses:
+
+- [Regular expression](https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html)
+- [Text Mining with R](https://app.datacamp.com/learn/skill-tracks/text-mining-with-r)
+
+R packages:
+`stringr`, `tidytext`, `quanteda`
+
+NYU course:
+
+APSTA-GE 2047 (Ravi Shroff)
+- Will cover some text analysis
+
+DS-GA 1015 (pending)
+- Dive into text analysis
+:::
+
+
+
+## Finally...
+
+-   Good luck!
+    -   Lab Materials: ![lab_slides](images/github.png){.absolute bottom="0" right="70" width="500" height="500"}
